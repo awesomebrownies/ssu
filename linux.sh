@@ -5,9 +5,11 @@ pause(){
 Press [ENTER] to continue" placeholder
 }
 update_and_configure_settings(){
-   echo sudo apt update -y
+   sudo apt update -y
    wait
    sudo apt upgrade -y
+   wait
+   snap refresh
 }
 configure_firewall(){
    sudo ufw enable
@@ -54,8 +56,8 @@ group_management(){
      4 ) read -p "Enter a group name: " group; read -p "Enter a user to be removed: " user; sudo deluser ${user} ${group};;
   esac
 }
-GUEST_CONFIG_FILE="/etc/lightdm/lightdm.conf.d/50-no-guest.conf"
-REMOTE_LOGIN_CONFIG_FILE="/etc/lightdm/lightdm.conf.d/50-no-remote-login.conf"
+GUEST_CONFIG_FILE="/usr/share/lightdm/lightdm.conf.d/50-no-guest.conf"
+REMOTE_LOGIN_CONFIG_FILE="/usr/share/lightdm/lightdm.conf.d/50-no-remote-login.conf"
 disable_guest_and_remote_login(){
    #Write new file to disable guest access
    echo -e "[SeatDefaults]\nallow-guest=false\n" | sudo tee "$GUEST_CONFIG_FILE" > /dev/null
@@ -89,3 +91,4 @@ while true; do
    pause
    echo ""
 done
+
