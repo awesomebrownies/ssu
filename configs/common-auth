@@ -15,7 +15,7 @@
 
 #here are the per-package modules (the "Primary" block)
 auth	required			pam_faillock.so preauth audit deny=4 unlock_time=600
-auth	[success=1 default=ignore]	pam_unix.so nullok
+auth	[success=1 default=ignore]	pam_unix.so
 #here's the fallback if no module succeeds
 auth	[default=die]			pam_faillock.so authfail audit deny=4 unlock_time=600
 auth	sufficient			pam_faillock.so authsucc audit deny=4 unlock_time=600
