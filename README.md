@@ -1,16 +1,20 @@
 # system security utilities
-
+This tool only supports Linux. The code inside uses executes console commands for each executable item
+## Installation
+Install `Go` on Linux
+`snap install go`
+Navigate to the correct directory
+`cd cmd/ssu`
+Run the program
+`go run main.go`
 ## Modules
 
 ### Firewall
-* uncomplicated firewall
-### Password and Authentication
-* common-auth configuration
-* common-password configuration
+* Configure UFW (uncomplicated firewall)
+* Configure System CTL IPv4
 ### Remote Access Points
-* SSH
-* Telnet
+* Modify SSH Configuration
 ### Least Privilege
-* User Management
-* System CTL
+* Disable Root (sudo su)
+* Disable Guest User & Greeter Remote Login
 * System File Permissions
