@@ -50,7 +50,6 @@ func selectMenu(directory *configuration.Directory) {
 				if action.Name == actionName {
 					fmt.Printf("Executing: %s\n", action.Name)
 					execBash(action.ScriptPath)
-					fmt.Println("test: " + action.ScriptPath)
 					selectMenu(directory)
 					return
 				}
