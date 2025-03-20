@@ -71,7 +71,6 @@ func selectMenu(directory *configuration.Directory) {
 }
 
 func execBash(file string) {
-	fmt.Println(file)
 	cmd := exec.Command("/bin/bash", "../../"+file)
 	cmd.Stdout = os.Stdout
 	cmd.Stdin = os.Stdin
