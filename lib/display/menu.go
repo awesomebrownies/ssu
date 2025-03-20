@@ -47,7 +47,7 @@ type Menu struct {
 }
 type MenuItem struct {
 	Text string
-	ID   string
+	// ID   string
 }
 
 func NewMenu(heading string, prompt string) *Menu {
@@ -58,10 +58,10 @@ func NewMenu(heading string, prompt string) *Menu {
 }
 
 // AddItem will add new menu option to the menu list
-func (m *Menu) AddItem(option string, id string) *Menu {
+func (m *Menu) AddItem(option string /*, id string*/) *Menu {
 	menuItem := &MenuItem{
 		Text: option,
-		ID:   id,
+		// ID:   id,
 	}
 
 	m.MenuItems = append(m.MenuItems, menuItem)
@@ -100,7 +100,7 @@ func (m *Menu) renderMenuItems(redraw bool) {
 
 // Display will display the current menu options and awaits user selection
 // It returns the users selected choice
-func (m *Menu) Display(interface{}, error) {
+func (m *Menu) Display() (interface{}, error) {
 	defer func() {
 		//Show cursor again
 		fmt.Printf(ShowCursor)
@@ -125,11 +125,11 @@ func (m *Menu) Display(interface{}, error) {
 		keyCode := getInput()
 		switch keyCode {
 		case KeyEscape:
-			return "", nil
+			return -1, nil
 		case KeyEnter:
 			menuItem := m.MenuItems[m.CursorPos]
 			fmt.Println("\r")
-			return menuItem.ID, nil
+			return menuItem.Text, nil
 		case KeyUp:
 			m.CursorPos = (m.CursorPos + len(m.MenuItems) - 1) % len(m.MenuItems)
 			m.renderMenuItems(true)
@@ -140,6 +140,8 @@ func (m *Menu) Display(interface{}, error) {
 	}
 }
 
+// getInput will read raw input from the terminal
+// It returns the raw ASCII value inputted
 func getInput() byte {
 	t, _ := term.Open("/dev/tty")
 
@@ -148,12 +150,22 @@ func getInput() byte {
 		log.Fatal(err)
 	}
 
+	defer t.Close() // Close t in defer to ensure it's always closed
+
 	var read int
 	readBytes := make([]byte, 3)
+	read, err = t.Read(readBytes)
+	if err != nil {
+		//Handle read error, it might be due to signal interruption
+		return 0 //Or some other value indicating error/interupttion if needed
+	}
 
-	t.Restore()
-	t.Close()
+	defer t.Restore() // Restore the terminal mode in defer
 
+	// Arrow keys are prefixed with the ANSI escape code which take up the first two bytes.
+	// The third byte is the key specific value we are looking for.
+	// FOr example the left arrow key is '<esc>[A' while hte right is '<esc>[C'
+	// See: https://en.wikipedia.org/wiki/ANSI_escape_code
 	if read == 3 {
 		if _, ok := NavigationKeys[readBytes[2]]; ok {
 			return readBytes[2]
