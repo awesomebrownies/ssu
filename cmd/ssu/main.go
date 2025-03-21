@@ -6,8 +6,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"greeter/lib/configuration"
-	"greeter/lib/display"
+	"ssu/lib/configuration"
+	"ssu/lib/display"
 
 	"github.com/spf13/cobra"
 )
