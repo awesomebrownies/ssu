@@ -1,27 +1,30 @@
-# system security utility
-Secure your system with some automated commands!
-The Controls:
-* Up Arrow: Select the item above
-* Down Arrow: Select the item below
-* Escape: Exit the program
-* Enter: Select a file/executable
+# System Security Utility
+
+The `ssu` CLI simplifies security with an intuitive interface. Easily customize your layout in `~/Documents/ssu/directories.yaml` and configure scripts in `~/Documents/ssu/scripts/`
 
 This tool only supports Linux. The code inside uses executes console commands for each executable item
-## Installation
-* Install `Go` on Linux: https://go.dev/doc/install
 
-* Navigate to the correct directory: `cd cmd/ssu`
+## 📦 Installation
 
-* Run the program: `go run main.go`
+Prerequisites: https://go.dev/doc/install
+
+```bash
+go install github.com/awesomebrownies/ssu/cmd/ssu@latest
+```
 
 ## Modules
 
 ### Firewall
-* Configure UFW (uncomplicated firewall)
-* Configure System CTL IPv4
+
+- Configure UFW (uncomplicated firewall)
+- Configure System CTL IPv4
+
 ### Remote Access Points
-* Modify SSH Configuration
+
+- Modify SSH Configuration
+
 ### Least Privilege
-* Disable Root (sudo su)
-* Disable Guest User & Greeter Remote Login
-* System File Permissions
+
+- Disable Root (sudo su)
+- Disable Guest User & Greeter Remote Login
+- System File Permissions
