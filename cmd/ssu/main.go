@@ -81,6 +81,14 @@ func execBash(file string) {
 	}
 }
 
+func initConfigs() {
+	err := os.MkdirAll("/usr/local/share/ssu/scripts", 0755)
+	if err != nil {
+		fmt.Printf("%s\n", err)
+	}
+
+}
+
 func main() {
 	rootCmd := &cobra.Command{
 		Use:   "ssu",
