@@ -1,4 +1,4 @@
-module ssu
+module github.com/awesomebrownies/ssu
 
 go 1.23.0
 

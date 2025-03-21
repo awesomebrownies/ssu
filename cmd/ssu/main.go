@@ -7,8 +7,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"ssu/lib/configuration"
-	"ssu/lib/display"
+	"github.com/awesomebrownies/ssu/lib/configuration"
+	"github.com/awesomebrownies/ssu/lib/display"
 
 	"github.com/spf13/cobra"
 )
