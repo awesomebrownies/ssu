@@ -50,12 +50,38 @@ func selectMenu(directory *configuration.Directory) {
 			return
 		}
 
+		// if strings.HasPrefix(resultStr, "v:") {
+		// 	err := exec.Command("nano", resultStr)
+		// 	if err != nil {
+		// 		fmt.Printf("%s\n", err)
+		// 	}
+		// 	selectMenu(directory)
+		// 	return
+		// }
+
 		//action
-		if strings.HasPrefix(resultStr, "▶ ") {
-			actionName := strings.TrimPrefix(resultStr, "▶ ")
+		view := strings.HasPrefix(resultStr, "v:")
+		if strings.HasPrefix(resultStr, "▶ ") || view {
+			actionName := strings.TrimPrefix(resultStr, "v:")
+			actionName = strings.TrimPrefix(actionName, "▶ ")
 
 			for _, action := range directory.Actions {
 				if action.Name == actionName {
+					if view {
+						cmd := exec.Command("nano", HomeDir+filePath+action.ScriptPath)
+
+						cmd.Stdin = os.Stdin
+						cmd.Stdout = os.Stdout
+						cmd.Stderr = os.Stderr
+
+						err := cmd.Run()
+						if err != nil {
+							fmt.Printf("%s\n", err)
+						}
+						selectMenu(directory)
+						return
+					}
+
 					fmt.Printf("Executing: %s\n", action.Name)
 					execBash(action.ScriptPath)
 					selectMenu(directory)
