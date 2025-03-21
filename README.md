@@ -2,7 +2,7 @@
 
 The `ssu` CLI simplifies security with an intuitive interface. Easily customize your layout in `~/Documents/ssu/directories.yaml` and configure scripts in `~/Documents/ssu/scripts/`
 
-This tool only supports Linux. The code inside uses executes console commands for each executable item
+This tool only supports Linux. The program natively executes bash scripts.
 
 ## 📦 Installation
 
