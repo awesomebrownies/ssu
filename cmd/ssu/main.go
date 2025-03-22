@@ -50,15 +50,6 @@ func selectMenu(directory *configuration.Directory) {
 			return
 		}
 
-		// if strings.HasPrefix(resultStr, "v:") {
-		// 	err := exec.Command("nano", resultStr)
-		// 	if err != nil {
-		// 		fmt.Printf("%s\n", err)
-		// 	}
-		// 	selectMenu(directory)
-		// 	return
-		// }
-
 		//action
 		view := strings.HasPrefix(resultStr, "v:")
 		if strings.HasPrefix(resultStr, "▶ ") || view {
