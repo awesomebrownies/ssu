@@ -12,6 +12,8 @@ Prerequisites: https://go.dev/doc/install
 go install github.com/awesomebrownies/ssu/cmd/ssu@latest
 ```
 
+V: View File, Enter: Execute/Open, Escape: Exit, Up/Down Arrow: Navigate
+
 ## Modules
 
 ### Firewall
