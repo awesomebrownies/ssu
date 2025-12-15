@@ -4,7 +4,7 @@ The `ssu` CLI simplifies security with an intuitive interface. Easily customize 
 
 This tool only supports Linux. The program natively executes bash scripts.
 
-## 📦 Installation
+## Installation
 
 Prerequisites: https://go.dev/doc/install
 
